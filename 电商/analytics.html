@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据分析 - 商城管理系统</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/analytics.css">
+    <!-- 引入图表库 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="admin-body">
+    <div class="admin-container">
+        <!-- 复用管理系统的侧边栏 -->
+        <nav class="admin-sidebar">
+            <!-- ... 侧边栏内容 ... -->
+        </nav>
+        
+        <main class="admin-main">
+            <div class="analytics-container">
+                <section class="analytics-section">
+                    <h2>销售分析</h2>
+                    <div class="chart-container">
+                        <canvas id="salesChart"></canvas>
+                    </div>
+                    <div class="analytics-filters">
+                        <select id="timeRange">
+                            <option value="7">最近7天</option>
+                            <option value="30">最近30天</option>
+                            <option value="90">最近90天</option>
+                        </select>
+                        <button onclick="exportSalesReport()">导出报表</button>
+                    </div>
+                </section>
+
+                <section class="analytics-section">
+                    <h2>用户行为分析</h2>
+                    <div class="chart-container">
+                        <canvas id="userBehaviorChart"></canvas>
+                    </div>
+                </section>
+
+                <section class="analytics-section">
+                    <h2>系统日志</h2>
+                    <div class="log-filters">
+                        <select id="logType">
+                            <option value="all">所有日志</option>
+                            <option value="error">错误日志</option>
+                            <option value="operation">操作日志</option>
+                            <option value="security">安全日志</option>
+                        </select>
+                        <input type="date" id="logDate">
+                        <button onclick="filterLogs()">筛选</button>
+                    </div>
+                    <div class="log-table-container">
+                        <table class="log-table">
+                            <thead>
+                                <tr>
+                                    <th>时间</th>
+                                    <th>类型</th>
+                                    <th>操作人</th>
+                                    <th>详情</th>
+                                    <th>IP地址</th>
+                                </tr>
+                            </thead>
+                            <tbody id="logTableBody">
+                                <!-- 日志数据将通过 JavaScript 动态生成 -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/analytics.js"></script>
+</body>
+</html> 

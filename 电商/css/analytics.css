@@ -1,0 +1,76 @@
+.analytics-container {
+    padding: 2rem;
+}
+
+.analytics-section {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+}
+
+.chart-container {
+    height: 400px;
+    margin: 1rem 0;
+}
+
+.analytics-filters {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.analytics-filters select,
+.analytics-filters button {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.log-filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.log-table-container {
+    overflow-x: auto;
+}
+
+.log-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.log-table th,
+.log-table td {
+    padding: 0.8rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.log-table tr:hover {
+    background: #f8f9fa;
+}
+
+.log-type {
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+}
+
+.log-type.error {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.log-type.operation {
+    background: #e3f2fd;
+    color: #1565c0;
+}
+
+.log-type.security {
+    background: #f1f8e9;
+    color: #33691e;
+} 

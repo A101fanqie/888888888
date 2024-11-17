@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商城后台管理系统</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body">
+    <div class="admin-container">
+        <nav class="admin-sidebar">
+            <div class="admin-logo">
+                <h2>后台管理</h2>
+            </div>
+            <ul class="admin-menu">
+                <li><a href="#dashboard" class="active">控制台</a></li>
+                <li><a href="#products">商品管理</a></li>
+                <li><a href="#inventory">库存管理</a></li>
+                <li><a href="#orders">订单管理</a></li>
+                <li><a href="#users">用户管理</a></li>
+                <li><a href="#service">售后服务</a></li>
+                <li><a href="#coupons">优惠券管理</a></li>
+            </ul>
+        </nav>
+        
+        <main class="admin-main">
+            <header class="admin-header">
+                <div class="admin-search">
+                    <input type="text" placeholder="搜索...">
+                </div>
+                <div class="admin-user">
+                    <span>管理员</span>
+                    <button onclick="logout()">退出</button>
+                </div>
+            </header>
+
+            <div class="admin-content">
+                <section id="dashboard" class="admin-section">
+                    <h2>控制台</h2>
+                    <div class="dashboard-stats">
+                        <div class="stat-card">
+                            <h3>总销售额</h3>
+                            <p class="stat-value">¥123,456</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>订单数</h3>
+                            <p class="stat-value">1,234</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>用户数</h3>
+                            <p class="stat-value">5,678</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>库存预警</h3>
+                            <p class="stat-value warning">3</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="inventory" class="admin-section" style="display: none;">
+                    <h2>库存管理</h2>
+                    <div class="inventory-controls">
+                        <button onclick="showAddInventoryModal()">添加库存</button>
+                        <button onclick="exportInventory()">导出库存报表</button>
+                    </div>
+                    <table class="inventory-table">
+                        <thead>
+                            <tr>
+                                <th>商品ID</th>
+                                <th>商品名称</th>
+                                <th>当前库存</th>
+                                <th>预警阈值</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="inventoryList">
+                            <!-- 库存数据将通过 JavaScript 动态生成 -->
+                        </tbody>
+                    </table>
+                </section>
+
+                <section id="service" class="admin-section" style="display: none;">
+                    <h2>售后服务管理</h2>
+                    <div class="service-list">
+                        <!-- 售后服务请求将通过 JavaScript 动态生成 -->
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- 库存管理模态框 -->
+    <div class="modal" id="inventoryModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>调整库存</h2>
+            <form id="inventoryForm">
+                <select name="productId" required>
+                    <!-- 商品选项将通过 JavaScript 动态生成 -->
+                </select>
+                <input type="number" name="quantity" placeholder="调整数量" required>
+                <input type="number" name="threshold" placeholder="预警阈值" required>
+                <button type="submit">保存</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/admin.js"></script>
+</body>
+</html> 

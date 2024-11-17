@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在线商城</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>在线商城</h1>
+            </div>
+            <div class="nav-links">
+                <a href="#home">首页</a>
+                <a href="#products">商品</a>
+                <a href="#cart">购物车</a>
+                <a href="#login">登录</a>
+                <a href="#register">注册</a>
+                <a href="#favorites">收藏夹</a>
+            </div>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="搜索商品...">
+                <button onclick="searchProducts()">搜索</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h2>欢迎来到在线商城</h2>
+            <p>发现优质商品，享受购物乐趣</p>
+        </section>
+
+        <section class="categories">
+            <h2>商品分类</h2>
+            <div class="category-list">
+                <button class="category-btn active" data-category="all">全部</button>
+                <button class="category-btn" data-category="phone">手机</button>
+                <button class="category-btn" data-category="computer">电脑</button>
+                <button class="category-btn" data-category="accessory">配件</button>
+            </div>
+        </section>
+
+        <section class="products" id="products">
+            <h2>热门商品</h2>
+            <div class="product-grid">
+                <!-- 产品卡片将通过 JavaScript 动态生成 -->
+            </div>
+        </section>
+
+        <section class="cart-section" id="cart">
+            <h2>购物车</h2>
+            <div class="cart-container">
+                <div class="cart-items">
+                    <!-- 购物车商品将在这里动态显示 -->
+                </div>
+                <div class="cart-summary">
+                    <h3>订单摘要</h3>
+                    <div class="coupon-input">
+                        <input type="text" id="couponCode" placeholder="输入优惠券码">
+                        <button onclick="applyCoupon()">使用</button>
+                    </div>
+                    <div class="cart-total">
+                        <div class="subtotal">
+                            <span>小计：</span>
+                            <span class="subtotal-amount">￥0.00</span>
+                        </div>
+                        <div class="discount" style="display: none;">
+                            <span>优惠：</span>
+                            <span class="discount-amount">-￥0.00</span>
+                        </div>
+                        <div class="total">
+                            <span>总计：</span>
+                            <span class="total-amount">￥0.00</span>
+                        </div>
+                    </div>
+                    <button class="checkout-btn" onclick="checkout()">结算</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="orders-section" id="orders">
+            <h2>我的订单</h2>
+            <div class="order-list">
+                <!-- 订单将通过 JavaScript 动态生成 -->
+            </div>
+        </section>
+
+        <section class="favorites-section" id="favorites" style="display: none;">
+            <h2>我的收藏</h2>
+            <div class="favorites-grid">
+                <!-- 收藏的商品将通过 JavaScript 动态生成 -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 在线商城. 保留所有权利.</p>
+    </footer>
+
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>用户登录</h2>
+            <form id="loginForm">
+                <input type="email" placeholder="邮箱" required>
+                <input type="password" placeholder="密码" required>
+                <button type="submit">登录</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>用户注册</h2>
+            <form id="registerForm">
+                <input type="text" placeholder="用户名" required>
+                <input type="email" placeholder="邮箱" required>
+                <input type="password" placeholder="密码" required>
+                <input type="password" placeholder="确认密码" required>
+                <button type="submit">注册</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="productModal">
+        <div class="modal-content product-detail">
+            <span class="close">&times;</span>
+            <div id="productDetail">
+                <!-- 商品详情将通过 JavaScript 动态生成 -->
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="reviewModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>商品评价</h2>
+            <form id="reviewForm">
+                <div class="rating">
+                    <span class="star" data-rating="1">★</span>
+                    <span class="star" data-rating="2">★</span>
+                    <span class="star" data-rating="3">★</span>
+                    <span class="star" data-rating="4">★</span>
+                    <span class="star" data-rating="5">★</span>
+                </div>
+                <textarea placeholder="请分享您的使用体验..." required></textarea>
+                <button type="submit">提交评价</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="addressModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>收货地址管理</h2>
+            <div class="address-list">
+                <!-- 地址列表将通过 JavaScript 动态生成 -->
+            </div>
+            <button class="add-address-btn" onclick="showAddAddressForm()">添加新地址</button>
+            <form id="addressForm" style="display: none;">
+                <input type="text" placeholder="收货人姓名" required>
+                <input type="tel" placeholder="手机号码" required>
+                <input type="text" placeholder="省份" required>
+                <input type="text" placeholder="城市" required>
+                <input type="text" placeholder="详细地址" required>
+                <button type="submit">保存地址</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="paymentModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>订单支付</h2>
+            <div class="order-info">
+                <!-- 订单信息将通过 JavaScript 动态生成 -->
+            </div>
+            <div class="payment-methods">
+                <h3>选择支付方式</h3>
+                <div class="payment-options">
+                    <label>
+                        <input type="radio" name="payment" value="alipay" checked>
+                        <span>支付宝</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="payment" value="wechat">
+                        <span>微信支付</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="payment" value="card">
+                        <span>银行卡</span>
+                    </label>
+                </div>
+            </div>
+            <button class="pay-btn" onclick="processPayment()">确认支付</button>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html> 
